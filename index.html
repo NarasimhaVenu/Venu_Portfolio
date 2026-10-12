@@ -257,6 +257,26 @@
     .contact-box .contact-links .btn { transition: none; }
     .contact-box .contact-links .btn:hover, .contact-box .contact-links .btn:focus-visible { transform: none; }
   }
+
+  /* HOW I THINK */
+  .think-list { display: grid; gap: 26px; grid-template-columns: 1fr; }
+  .think-card {
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 26px;
+  }
+  .think-card h3 { font-size: 1.3rem; margin-bottom: 14px; }
+  .think-row {
+    display: grid;
+    grid-template-columns: 130px 1fr;
+    gap: 16px;
+    padding: 12px 0;
+    border-top: 1px dashed var(--line);
+  }
+  .think-row dt { font-size: 0.78rem; font-weight: 600; color: var(--coral); text-transform: uppercase; letter-spacing: 0.05em; padding-top: 3px; }
+  .think-row dd { margin: 0; line-height: 1.6; opacity: 0.82; font-size: 0.95rem; }
+  @media (max-width: 600px) { .think-row { grid-template-columns: 1fr; gap: 4px; } }
 </style>
 </head>
 <body>
@@ -267,6 +287,7 @@
     <ul class="nav-links">
       <li><a href="#about">About</a></li>
       <li><a href="#work">Work</a></li>
+      <li><a href="#thinking">Approach</a></li>
       <li><a href="#experience">Experience</a></li>
       <li><a href="#skills">Skills</a></li>
       <li><a href="#contact">Contact</a></li>
@@ -280,8 +301,8 @@
   <div class="wrap hero" style="padding:0; grid-column:1/-1; display:grid; grid-template-columns:inherit; gap:inherit;">
     <div class="hero-text">
       <span class="eyebrow-role">Product Manager · Product Owner</span>
-      <h1>I lead products from vision to <em>launch</em> and beyond.</h1>
-      <p class="sub">4+ years building and owning products across SaaS, FinTech, DevSecOps, and AI. Currently driving strategy, roadmaps, and delivery for Enterprise Reporting at Sonatype.</p>
+      <h1>I turn enterprise analytics and AI ideas into <em>shipped</em> products.</h1>
+      <p class="sub">4+ years across SaaS, enterprise analytics, FinTech, DevSecOps and AI-powered products. Currently owning strategy, roadmap, OKRs and delivery for Enterprise Reporting at Sonatype.</p>
       <div class="hero-cta">
         <a class="btn btn-primary" href="#work">See the work</a>
         <a class="btn" href="#contact">Get in touch</a>
@@ -360,6 +381,47 @@
         <h3>AI automation &amp; support portal</h3>
         <p>Identified AI-driven automation and intelligent workflow opportunities, and contributed to a Fusion-based support portal.</p>
         <div class="metric"><b>FactSet</b> · 2024–2025</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="thinking">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>How I think</h2>
+      <p>Short write-ups of how I break down a problem, weigh the options and decide what to build.</p>
+    </div>
+    <div class="think-list">
+      <div class="think-card">
+        <h3>Problem statement 1: add a title here</h3>
+        <dl style="margin:0;">
+          <div class="think-row"><dt>Problem</dt><dd>Describe the situation in one or two lines.</dd></div>
+          <div class="think-row"><dt>Insight</dt><dd>What did you notice that others missed?</dd></div>
+          <div class="think-row"><dt>Options</dt><dd>Two or three approaches you considered, with trade-offs.</dd></div>
+          <div class="think-row"><dt>Decision</dt><dd>What you chose and why.</dd></div>
+          <div class="think-row"><dt>Outcome</dt><dd>The result, or the metrics you would track.</dd></div>
+        </dl>
+      </div>
+      <div class="think-card">
+        <h3>Problem statement 2: add a title here</h3>
+        <dl style="margin:0;">
+          <div class="think-row"><dt>Problem</dt><dd>Describe the situation in one or two lines.</dd></div>
+          <div class="think-row"><dt>Insight</dt><dd>What did you notice that others missed?</dd></div>
+          <div class="think-row"><dt>Options</dt><dd>Two or three approaches you considered, with trade-offs.</dd></div>
+          <div class="think-row"><dt>Decision</dt><dd>What you chose and why.</dd></div>
+          <div class="think-row"><dt>Outcome</dt><dd>The result, or the metrics you would track.</dd></div>
+        </dl>
+      </div>
+      <div class="think-card">
+        <h3>Problem statement 3: add a title here</h3>
+        <dl style="margin:0;">
+          <div class="think-row"><dt>Problem</dt><dd>Describe the situation in one or two lines.</dd></div>
+          <div class="think-row"><dt>Insight</dt><dd>What did you notice that others missed?</dd></div>
+          <div class="think-row"><dt>Options</dt><dd>Two or three approaches you considered, with trade-offs.</dd></div>
+          <div class="think-row"><dt>Decision</dt><dd>What you chose and why.</dd></div>
+          <div class="think-row"><dt>Outcome</dt><dd>The result, or the metrics you would track.</dd></div>
+        </dl>
       </div>
     </div>
   </div>
