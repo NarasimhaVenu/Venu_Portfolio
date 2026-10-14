@@ -21,7 +21,7 @@
   }
   *, *::before, *::after { box-sizing: inherit; }
   html { scroll-padding-top: env(safe-area-inset-top, 0px); scroll-behavior: smooth; }
-  html, body { height: 100%; }
+  html, body { min-height: 100%; }
   body {
     margin: 0;
     background: var(--cream);
@@ -184,21 +184,6 @@
   .card .metric { font-family: 'Fraunces', serif; font-size: 1.05rem; color: var(--ink); }
   .card .metric b { color: var(--coral); }
 
-  /* EXPERIENCE — timeline */
-  .timeline { display: flex; flex-direction: column; }
-  .t-row {
-    display: grid;
-    grid-template-columns: 130px 1fr;
-    gap: 20px;
-    padding: 22px 0;
-    border-bottom: 1px solid var(--line);
-  }
-  .t-row:last-child { border-bottom: none; }
-  .t-when { font-size: 0.88rem; opacity: 0.65; padding-top: 4px; }
-  .t-role h3 { font-size: 1.15rem; margin-bottom: 4px; }
-  .t-role .t-co { color: var(--coral); font-weight: 600; font-size: 0.92rem; }
-  .t-role p { margin-top: 10px; opacity: 0.8; line-height: 1.6; font-size: 0.95rem; }
-
   /* CONTACT */
   .contact-box {
     background: var(--ink);
@@ -221,9 +206,6 @@
     .btn, a { transition: none; }
   }
 
-  .t-role ul { margin: 10px 0 0; padding-left: 18px; }
-  .t-role li { opacity: 0.8; line-height: 1.6; font-size: 0.95rem; margin-bottom: 6px; }
-  .t-sub { font-size: 0.85rem; opacity: 0.6; margin-top: 6px; }
   .skills-grid { display: grid; gap: 22px; grid-template-columns: 1fr; }
   @media (min-width: 700px) { .skills-grid { grid-template-columns: 1fr 1fr; } }
   .skill-group h3 { font-size: 1.05rem; margin-bottom: 12px; color: var(--coral); }
@@ -277,6 +259,84 @@
   .think-row dt { font-size: 0.78rem; font-weight: 600; color: var(--coral); text-transform: uppercase; letter-spacing: 0.05em; padding-top: 3px; }
   .think-row dd { margin: 0; line-height: 1.6; opacity: 0.82; font-size: 0.95rem; }
   @media (max-width: 600px) { .think-row { grid-template-columns: 1fr; gap: 4px; } }
+
+  /* EXPERIENCE — side-by-side icon cards with dropdown */
+  .xp-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; align-items: start; }
+  @media (max-width: 900px) { .xp-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 520px) { .xp-grid { grid-template-columns: 1fr; } }
+  .xp-card {
+    --accent: var(--coral);
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-top: 4px solid var(--accent);
+    border-radius: 18px;
+    transition: transform .2s ease, box-shadow .2s ease;
+  }
+  .xp-card:nth-child(2) { --accent: #3DB38A; }
+  .xp-card:nth-child(3) { --accent: #6C7BE0; }
+  .xp-card:nth-child(4) { --accent: #E9A93B; }
+  .xp-card:hover { transform: translateY(-3px); box-shadow: 0 16px 30px -20px rgba(27,35,64,0.4); }
+  .xp-card summary {
+    list-style: none;
+    cursor: pointer;
+    display: flex; flex-direction: column;
+    padding: 22px 20px 18px;
+    border-radius: 14px;
+  }
+  .xp-card summary::-webkit-details-marker { display: none; }
+  .xp-icon {
+    height: 52px; min-width: 52px; max-width: 160px;
+    padding: 8px 14px;
+    display: inline-flex; align-items: center; justify-content: center;
+    align-self: flex-start;
+    border-radius: 14px;
+    background: #fff;
+    border: 1px solid var(--line);
+    margin-bottom: 16px;
+  }
+  .xp-icon img, .xp-icon svg { height: 100%; width: auto; max-width: 100%; display: block; }
+  .xp-mono { font-family: 'Fraunces', serif; font-weight: 700; font-size: 1.05rem; color: #1B2340; letter-spacing: -0.01em; }
+  .xp-icon img + .xp-mono { display: none; }
+  .xp-when { font-size: 0.8rem; font-weight: 600; opacity: 0.65; margin-bottom: 6px; }
+  .xp-role { font-family: 'Fraunces', serif; font-size: 1.15rem; font-weight: 600; line-height: 1.2; min-height: 2.4em; }
+  @media (max-width: 520px) { .xp-role { min-height: 0; } }
+  .xp-co { font-size: 0.9rem; margin-top: 8px; color: color-mix(in srgb, var(--ink) 65%, transparent); }
+  .xp-co b { font-weight: 700; color: color-mix(in srgb, var(--accent) 72%, var(--ink)); background: color-mix(in srgb, var(--accent) 14%, transparent); padding: 3px 9px; border-radius: 8px; }
+  .xp-toggle {
+    display: flex; align-items: center; justify-content: space-between;
+    margin-top: 18px; padding-top: 14px;
+    border-top: 1px dashed var(--line);
+    font-size: 0.82rem; font-weight: 600;
+  }
+  .xp-opened { display: none; }
+  .xp-card[open] .xp-opened { display: inline; }
+  .xp-card[open] .xp-closed { display: none; }
+  .sc-chevron {
+    width: 28px; height: 28px;
+    border: 1.5px solid var(--line);
+    border-radius: 50%;
+    display: grid; place-items: center;
+    transition: transform .2s ease;
+  }
+  .sc-chevron::before {
+    content: "";
+    width: 7px; height: 7px;
+    border-right: 2px solid currentColor;
+    border-bottom: 2px solid currentColor;
+    transform: rotate(45deg) translate(-1px, -1px);
+  }
+  .xp-card[open] .sc-chevron { transform: rotate(180deg); }
+  .xp-body { margin: 0 20px; padding: 16px 0 20px; border-top: 1px dashed var(--line); }
+  .xp-metric { display: flex; align-items: baseline; flex-wrap: wrap; gap: 4px 8px; margin-bottom: 12px; }
+  .xp-metric b { font-family: 'Fraunces', serif; font-size: 1.5rem; color: var(--accent); line-height: 1; }
+  .xp-metric span { font-size: 0.8rem; opacity: 0.7; }
+  .xp-body ul { margin: 0; padding-left: 18px; }
+  .xp-body li { opacity: 0.82; line-height: 1.55; font-size: 0.9rem; margin-bottom: 6px; }
+  .xp-body p { margin: 0; opacity: 0.82; line-height: 1.55; font-size: 0.9rem; }
+  @media (prefers-reduced-motion: reduce) {
+    .xp-card, .sc-chevron { transition: none; }
+    .xp-card:hover { transform: none; }
+  }
 </style>
 </head>
 <body>
@@ -411,14 +471,19 @@
   <div class="wrap">
     <div class="section-head">
       <h2>Experience</h2>
-      <p>From engineering trainee to owning product strategy for enterprise reporting.</p>
+      <p>Tap a card to see the details of each role.</p>
     </div>
-    <div class="timeline">
-      <div class="t-row">
-        <div class="t-when">Dec 2025 — Now</div>
-        <div class="t-role">
-          <h3>Technical Product Owner</h3>
-          <div class="t-co">Sonatype, Hyderabad</div>
+    <div class="xp-grid">
+      <details class="xp-card">
+        <summary>
+          <span class="xp-icon"><svg viewBox="5.2 0.76 13.6 15" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Sonatype logo"><path fill="#1B1C30" d="M17.952 11.6989L12 15.1348l-5.952-3.4364V4.8256L12 1.3892l5.952 3.4364v6.8728zm-1.7072-5.8871L12 3.3607 7.7553 5.8113v4.9014L12 13.1635l4.2448-2.4506V5.8112z"/></svg></span>
+          <span class="xp-when">Dec 2025 — Now</span>
+          <span class="xp-role">Technical Product Owner</span>
+          <span class="xp-co"><b>Sonatype</b>, Hyderabad</span>
+          <span class="xp-toggle"><span class="xp-more"><span class="xp-closed">View details</span><span class="xp-opened">Hide details</span></span><span class="sc-chevron" aria-hidden="true"></span></span>
+        </summary>
+        <div class="xp-body">
+          <div class="xp-metric"><b>95%</b><span>less processing time</span></div>
           <ul>
             <li>Own product strategy, roadmap, OKRs, prioritization and delivery for Enterprise Reporting across Sonatype Lifecycle, Firewall and Nexus Repo.</li>
             <li>Cut processing time 95% and data-processing costs 45% with Databricks liquid clustering.</li>
@@ -427,39 +492,54 @@
             <li>Partner with Engineering, Data Engineering, Data Analytics, Support and Documentation on cross-functional initiatives.</li>
           </ul>
         </div>
-      </div>
-      <div class="t-row">
-        <div class="t-when">Mar 2024 — Dec 2025</div>
-        <div class="t-role">
-          <h3>Associate Product Specialist</h3>
-          <div class="t-co">FactSet, Hyderabad</div>
+      </details>
+      <details class="xp-card">
+        <summary>
+          <span class="xp-icon"><img src="logos/factset.svg" alt="FactSet logo" onerror="if(!this.dataset.t){this.dataset.t=1;this.src='logos/factset.png'}else{this.remove()}"><span class="xp-mono">FactSet</span></span>
+          <span class="xp-when">Mar 2024 — Dec 2025</span>
+          <span class="xp-role">Associate Product Specialist</span>
+          <span class="xp-co"><b>FactSet</b>, Hyderabad</span>
+          <span class="xp-toggle"><span class="xp-more"><span class="xp-closed">View details</span><span class="xp-opened">Hide details</span></span><span class="sc-chevron" aria-hidden="true"></span></span>
+        </summary>
+        <div class="xp-body">
+          <div class="xp-metric"><b>GenAI</b><span>solutions led end to end</span></div>
           <ul>
             <li>Led end-to-end development of Generative AI solutions for internal and client-facing applications.</li>
             <li>Partnered with clients, Product, Engineering and QA from discovery through post-release feedback.</li>
             <li>Wrote PRDs, user stories and acceptance criteria aligned to business objectives.</li>
           </ul>
         </div>
-      </div>
-      <div class="t-row">
-        <div class="t-when">Jul 2022 — Mar 2024</div>
-        <div class="t-role">
-          <h3>Senior Product Analyst</h3>
-          <div class="t-co">FactSet, Hyderabad</div>
+      </details>
+      <details class="xp-card">
+        <summary>
+          <span class="xp-icon"><img src="logos/factset.svg" alt="FactSet logo" onerror="if(!this.dataset.t){this.dataset.t=1;this.src='logos/factset.png'}else{this.remove()}"><span class="xp-mono">FactSet</span></span>
+          <span class="xp-when">Jul 2022 — Mar 2024</span>
+          <span class="xp-role">Senior Product Analyst</span>
+          <span class="xp-co"><b>FactSet</b>, Hyderabad</span>
+          <span class="xp-toggle"><span class="xp-more"><span class="xp-closed">View details</span><span class="xp-opened">Hide details</span></span><span class="sc-chevron" aria-hidden="true"></span></span>
+        </summary>
+        <div class="xp-body">
+          <div class="xp-metric"><b>85%</b><span>less support burden</span></div>
           <ul>
             <li>Designed and deployed a custom chatbot that cut support burden by 85%.</li>
             <li>Used product analytics and user feedback to recommend feature and usability improvements.</li>
             <li>Worked with Engineering and QA on requirements, UAT and release validation in an Agile/DevOps environment.</li>
           </ul>
         </div>
-      </div>
-      <div class="t-row">
-        <div class="t-when">Jan 2022 — May 2022</div>
-        <div class="t-role">
-          <h3>Engineer Trainee</h3>
-          <div class="t-co">LTTS, Mysore</div>
+      </details>
+      <details class="xp-card">
+        <summary>
+          <span class="xp-icon"><img src="logos/ltts.svg" alt="LTTS logo" onerror="if(!this.dataset.t){this.dataset.t=1;this.src='logos/ltts.png'}else{this.remove()}"><span class="xp-mono">LTTS</span></span>
+          <span class="xp-when">Jan 2022 — May 2022</span>
+          <span class="xp-role">Engineer Trainee</span>
+          <span class="xp-co"><b>LTTS</b>, Mysore</span>
+          <span class="xp-toggle"><span class="xp-more"><span class="xp-closed">View details</span><span class="xp-opened">Hide details</span></span><span class="sc-chevron" aria-hidden="true"></span></span>
+        </summary>
+        <div class="xp-body">
+          <div class="xp-metric"><b>Full cycle</b><span>requirements to deployment</span></div>
           <p>Worked across the product development life cycle, from requirement gathering to deployment, in an Agile environment.</p>
         </div>
-      </div>
+      </details>
     </div>
   </div>
 </section>
