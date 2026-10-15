@@ -78,19 +78,6 @@
   }
   @media (min-width: 860px) { .hero { grid-template-columns: 1.2fr 0.8fr; padding: 100px 0 84px; } }
 
-  .hero-blob {
-    position: absolute;
-    top: -60px; right: -80px;
-    width: 340px; height: 340px;
-    background: var(--mint);
-    border-radius: 62% 38% 55% 45% / 45% 55% 45% 55%;
-    opacity: 0.55;
-    z-index: 0;
-    filter: blur(2px);
-  }
-  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .hero-blob { opacity: 0.18; } }
-  :root[data-theme="dark"] .hero-blob { opacity: 0.18; }
-
   .hero-text { position: relative; z-index: 1; }
   .eyebrow-role {
     display: inline-block;
@@ -127,18 +114,61 @@
   .btn-primary { background: var(--coral); border-color: var(--coral); color: #fff; }
   .btn-primary:hover { background: #ff5a37; }
 
-  .hero-card {
+  /* HERO PHOTO */
+  .hero-visual {
     position: relative; z-index: 1;
+    width: 100%; max-width: 380px;
+    margin: 0 auto 64px;
+  }
+  .hero-visual::before {
+    content: "";
+    position: absolute;
+    inset: 8px -26px 20px 26px;
+    background: var(--mint);
+    border-radius: 45% 55% 40% 60% / 55% 45% 55% 45%;
+    opacity: 0.7;
+    transform: rotate(-8deg);
+    z-index: 0;
+  }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .hero-visual::before { opacity: 0.22; } }
+  :root[data-theme="dark"] .hero-visual::before { opacity: 0.22; }
+  .hero-photo {
+    position: relative; z-index: 1;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    border-radius: 62% 38% 55% 45% / 45% 55% 45% 55%;
+    border: 6px solid var(--paper);
+    background: var(--paper);
+    box-shadow: 0 26px 50px -26px rgba(27,35,64,0.5);
+    overflow: hidden;
+    display: grid; place-items: center;
+  }
+  .hero-initials { font-family: 'Fraunces', serif; font-size: 4.5rem; font-weight: 700; color: var(--coral); opacity: 0.45; }
+  .hero-photo img {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+    object-fit: cover;
+    object-position: 50% 20%;
+  }
+  .hero-card {
+    position: absolute; z-index: 2;
+    left: -30px; bottom: -30px;
+    width: 250px;
     background: var(--paper);
     border: 1px solid var(--line);
-    border-radius: 20px;
-    padding: 26px;
-    box-shadow: 0 18px 40px -18px rgba(27,35,64,0.25);
+    border-radius: 18px;
+    padding: 14px 18px;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 12px 16px;
+    box-shadow: 0 18px 40px -18px rgba(27,35,64,0.35);
   }
-  .hero-card .stat { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px dashed var(--line); }
-  .hero-card .stat:last-child { border-bottom: none; }
-  .hero-card .stat b { font-family: 'Fraunces', serif; font-size: 1.3rem; }
-  .hero-card .stat span { font-size: 0.85rem; opacity: 0.7; }
+  .hero-card .stat { display: flex; flex-direction: column-reverse; gap: 2px; }
+  .hero-card .stat b { font-family: 'Fraunces', serif; font-size: 1.35rem; color: var(--coral); line-height: 1.1; }
+  .hero-card .stat span { font-size: 0.74rem; opacity: 0.72; line-height: 1.25; }
+  @media (max-width: 520px) {
+    .hero-visual { max-width: 300px; }
+    .hero-card { left: 10px; bottom: -52px; width: calc(100% - 20px); padding: 10px 14px; gap: 8px 12px; }
+    .hero-card .stat b { font-size: 1.2rem; }
+  }
 
   /* SECTIONS */
   section { padding: 64px 0; border-top: 1px solid var(--line); }
@@ -357,8 +387,7 @@
 </nav>
 
 <header class="hero">
-  <div class="hero-blob" aria-hidden="true"></div>
-  <div class="wrap hero" style="padding:0; grid-column:1/-1; display:grid; grid-template-columns:inherit; gap:inherit;">
+  <div class="wrap hero" style="padding:0 28px; grid-column:1/-1; display:grid; grid-template-columns:inherit; gap:inherit;">
     <div class="hero-text">
       <span class="eyebrow-role">Product Manager · Product Owner</span>
       <h1>I lead products from vision to <em>launch</em> and beyond.</h1>
@@ -369,11 +398,17 @@
         <a class="btn" href="Venu_Karanam_Resume.pdf" download>Download resume</a>
       </div>
     </div>
-    <div class="hero-card">
-      <div class="stat"><span>Years in product</span><b>4+</b></div>
-      <div class="stat"><span>Processing time cut</span><b>95%</b></div>
-      <div class="stat"><span>Support burden cut</span><b>85%</b></div>
-      <div class="stat"><span>Data cost cut</span><b>45%</b></div>
+    <div class="hero-visual">
+      <div class="hero-photo">
+        <span class="hero-initials" aria-hidden="true">VK</span>
+        <img id="heroPhoto" src="Venu_Karanam_Photo.jpg" alt="Portrait of Venu Karanam" width="600" height="800" onerror="this.remove()">
+      </div>
+      <div class="hero-card">
+        <div class="stat"><span>Years in product</span><b>4+</b></div>
+        <div class="stat"><span>Processing time cut</span><b>95%</b></div>
+        <div class="stat"><span>Support burden cut</span><b>85%</b></div>
+        <div class="stat"><span>Data cost cut</span><b>45%</b></div>
+      </div>
     </div>
   </div>
 </header>
@@ -434,173 +469,3 @@
         <span class="card-tag">Hackathon</span>
         <h3>AI dependency malware scanner</h3>
         <p>Built an AI-powered scanner that uses live threat intelligence to flag malicious dependencies.</p>
-        <div class="metric"><b>Hackers Choice Award</b>, Sonatype 2026</div>
-      </div>
-      <div class="card">
-        <span class="card-tag">Support Experience</span>
-        <h3>AI automation &amp; support portal</h3>
-        <p>Identified AI-driven automation and intelligent workflow opportunities, and contributed to a Fusion-based support portal.</p>
-        <div class="metric"><b>FactSet</b> · 2024–2025</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="thinking">
-  <div class="wrap">
-    <div class="section-head">
-      <h2>How I think</h2>
-      <p>Short write-ups of how I break down a problem, weigh the options and decide what to build.</p>
-    </div>
-    <div class="think-list">
-      <div class="think-card">
-        <h3>Problem statement: add a title here</h3>
-        <dl style="margin:0;">
-          <div class="think-row"><dt>Problem</dt><dd>Describe the situation in one or two lines.</dd></div>
-          <div class="think-row"><dt>Insight</dt><dd>What did you notice that others missed?</dd></div>
-          <div class="think-row"><dt>Options</dt><dd>Two or three approaches you considered, with trade-offs.</dd></div>
-          <div class="think-row"><dt>Decision</dt><dd>What you chose and why.</dd></div>
-          <div class="think-row"><dt>Outcome</dt><dd>The result, or the metrics you would track.</dd></div>
-        </dl>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="experience">
-  <div class="wrap">
-    <div class="section-head">
-      <h2>Experience</h2>
-      <p>Tap a card to see the details of each role.</p>
-    </div>
-    <div class="xp-grid">
-      <details class="xp-card">
-        <summary>
-          <span class="xp-icon"><svg viewBox="5.2 0.76 13.6 15" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Sonatype logo"><path fill="#1B1C30" d="M17.952 11.6989L12 15.1348l-5.952-3.4364V4.8256L12 1.3892l5.952 3.4364v6.8728zm-1.7072-5.8871L12 3.3607 7.7553 5.8113v4.9014L12 13.1635l4.2448-2.4506V5.8112z"/></svg></span>
-          <span class="xp-when">Dec 2025 — Now</span>
-          <span class="xp-role">Technical Product Owner</span>
-          <span class="xp-co"><b>Sonatype</b>, Hyderabad</span>
-          <span class="xp-toggle"><span class="xp-more"><span class="xp-closed">View details</span><span class="xp-opened">Hide details</span></span><span class="sc-chevron" aria-hidden="true"></span></span>
-        </summary>
-        <div class="xp-body">
-          <div class="xp-metric"><b>95%</b><span>less processing time</span></div>
-          <ul>
-            <li>Own product strategy, roadmap, OKRs, prioritization and delivery for Enterprise Reporting across Sonatype Lifecycle, Firewall and Nexus Repo.</li>
-            <li>Cut processing time 95% and data-processing costs 45% with Databricks liquid clustering.</li>
-            <li>Led the UI and product redesign of Enterprise Reporting; identified 6 key architecture risks.</li>
-            <li>Built an AI-powered dependency malware scanner and won the Hackers Choice Award at Sonatype Hackathon 2026.</li>
-            <li>Partner with Engineering, Data Engineering, Data Analytics, Support and Documentation on cross-functional initiatives.</li>
-          </ul>
-        </div>
-      </details>
-      <details class="xp-card">
-        <summary>
-          <span class="xp-icon"><img src="logos/factset.svg" alt="FactSet logo" onerror="if(!this.dataset.t){this.dataset.t=1;this.src='logos/factset.png'}else{this.remove()}"><span class="xp-mono">FactSet</span></span>
-          <span class="xp-when">Mar 2024 — Dec 2025</span>
-          <span class="xp-role">Associate Product Specialist</span>
-          <span class="xp-co"><b>FactSet</b>, Hyderabad</span>
-          <span class="xp-toggle"><span class="xp-more"><span class="xp-closed">View details</span><span class="xp-opened">Hide details</span></span><span class="sc-chevron" aria-hidden="true"></span></span>
-        </summary>
-        <div class="xp-body">
-          <div class="xp-metric"><b>GenAI</b><span>solutions led end to end</span></div>
-          <ul>
-            <li>Led end-to-end development of Generative AI solutions for internal and client-facing applications.</li>
-            <li>Partnered with clients, Product, Engineering and QA from discovery through post-release feedback.</li>
-            <li>Wrote PRDs, user stories and acceptance criteria aligned to business objectives.</li>
-          </ul>
-        </div>
-      </details>
-      <details class="xp-card">
-        <summary>
-          <span class="xp-icon"><img src="logos/factset.svg" alt="FactSet logo" onerror="if(!this.dataset.t){this.dataset.t=1;this.src='logos/factset.png'}else{this.remove()}"><span class="xp-mono">FactSet</span></span>
-          <span class="xp-when">Jul 2022 — Mar 2024</span>
-          <span class="xp-role">Senior Product Analyst</span>
-          <span class="xp-co"><b>FactSet</b>, Hyderabad</span>
-          <span class="xp-toggle"><span class="xp-more"><span class="xp-closed">View details</span><span class="xp-opened">Hide details</span></span><span class="sc-chevron" aria-hidden="true"></span></span>
-        </summary>
-        <div class="xp-body">
-          <div class="xp-metric"><b>85%</b><span>less support burden</span></div>
-          <ul>
-            <li>Designed and deployed a custom chatbot that cut support burden by 85%.</li>
-            <li>Used product analytics and user feedback to recommend feature and usability improvements.</li>
-            <li>Worked with Engineering and QA on requirements, UAT and release validation in an Agile/DevOps environment.</li>
-          </ul>
-        </div>
-      </details>
-      <details class="xp-card">
-        <summary>
-          <span class="xp-icon"><img src="logos/ltts.svg" alt="LTTS logo" onerror="if(!this.dataset.t){this.dataset.t=1;this.src='logos/ltts.png'}else{this.remove()}"><span class="xp-mono">LTTS</span></span>
-          <span class="xp-when">Jan 2022 — May 2022</span>
-          <span class="xp-role">Engineer Trainee</span>
-          <span class="xp-co"><b>LTTS</b>, Mysore</span>
-          <span class="xp-toggle"><span class="xp-more"><span class="xp-closed">View details</span><span class="xp-opened">Hide details</span></span><span class="sc-chevron" aria-hidden="true"></span></span>
-        </summary>
-        <div class="xp-body">
-          <div class="xp-metric"><b>Full cycle</b><span>requirements to deployment</span></div>
-          <p>Worked across the product development life cycle, from requirement gathering to deployment, in an Agile environment.</p>
-        </div>
-      </details>
-    </div>
-  </div>
-</section>
-
-<section id="skills">
-  <div class="wrap">
-    <div class="section-head">
-      <h2>Skills</h2>
-    </div>
-    <div class="skills-grid">
-      <div class="skill-group"><h3>Product Management</h3><div class="pill-row">
-        <span class="pill">Product Strategy</span><span class="pill">Roadmap</span><span class="pill">Product Discovery</span><span class="pill">Customer Discovery</span><span class="pill">Prioritization</span><span class="pill">Backlog Management</span><span class="pill">OKRs</span><span class="pill">Product Metrics</span></div></div>
-      <div class="skill-group"><h3>Delivery</h3><div class="pill-row">
-        <span class="pill">PRDs</span><span class="pill">User Stories</span><span class="pill">Requirements Management</span><span class="pill">Agile/Scrum</span><span class="pill">UAT</span><span class="pill">Release Management</span><span class="pill">Stakeholder Management</span></div></div>
-      <div class="skill-group"><h3>Technical Product</h3><div class="pill-row">
-        <span class="pill">SaaS</span><span class="pill">Platform &amp; Data Products</span><span class="pill">Enterprise Reporting</span><span class="pill">Sonatype Lifecycle</span><span class="pill">Firewall</span><span class="pill">Nexus Repo</span></div></div>
-      <div class="skill-group"><h3>AI &amp; Tools</h3><div class="pill-row">
-        <span class="pill">Generative AI</span><span class="pill">AI Product Development</span><span class="pill">Agentic AI</span><span class="pill">Jira</span><span class="pill">Databricks</span><span class="pill">Looker</span></div></div>
-    </div>
-  </div>
-</section>
-
-<section id="credentials">
-  <div class="wrap about-grid">
-    <div class="section-head" style="margin-bottom:0;">
-      <h2>Education, certifications &amp; awards</h2>
-      <p>B.Tech, Electronics &amp; Communication Engineering, SRM Institute of Science and Technology (2018–2022).</p>
-    </div>
-    <div class="about-copy">
-      <div class="pill-row" style="margin-bottom:20px;">
-        <span class="pill">Certified Product Owner (BA-Squared)</span>
-        <span class="pill">Salesforce Certified AI Associate</span>
-        <span class="pill">Atlassian Agile Project Management</span>
-        <span class="pill">Generative AI for Project Management (Google)</span>
-        <span class="pill">McKinsey Forward Program</span>
-      </div>
-      <p class="award"><b>Hackers Choice Award</b>, Sonatype Hackathon 2026, for the AI-powered dependency malware scanner.</p>
-      <p class="award"><b>Spotlight Award</b>, Sonatype, for the Customer at Our Core and Be Bold and Lead values.</p>
-      <p class="award"><b>Star Award</b>, FactSet, for the Product Cornerstone initiative: innovation, ownership and delivery.</p>
-    </div>
-  </div>
-</section>
-
-<section id="contact">
-  <div class="wrap">
-    <div class="contact-box">
-      <h2>Let's talk product.</h2>
-      <p>Open to exciting opportunities and conversations about building products that make an impact. Always happy to connect.</p>
-      <div class="contact-links">
-        <a class="btn btn-primary" href="mailto:karanamvenu4@gmail.com">Email me</a>
-        <a class="btn" href="tel:+916303117119">Contact</a>
-        <a class="btn" href="https://www.linkedin.com/in/karanamvenu" target="_blank" rel="noopener">LinkedIn</a>
-        <a class="btn" href="Venu_Karanam_Resume.pdf" download>Download resume</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<footer>
-  <div class="wrap">Venu Karanam · Product Manager &amp; Product Owner · Hyderabad, India</div>
-</footer>
-
-</body>
-</html>
