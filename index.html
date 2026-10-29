@@ -4,6 +4,27 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Venu Karanam — Product Manager &amp; Product Owner</title>
+<meta name="description" content="Product Manager and Technical Product Owner with 4+ years across SaaS, enterprise analytics, FinTech and AI-powered products. Currently owning Enterprise Reporting at Sonatype.">
+<meta name="author" content="Venu Karanam">
+<meta name="theme-color" content="#FBF7F2">
+<link rel="canonical" href="https://narasimhavenu.github.io/Venu_Portfolio/">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23FF6B4A'/%3E%3Ctext x='32' y='43' font-family='Georgia,serif' font-size='30' font-weight='700' text-anchor='middle' fill='white'%3EVK%3C/text%3E%3C/svg%3E">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Venu Karanam">
+<meta property="og:title" content="Venu Karanam — Product Manager &amp; Technical Product Owner">
+<meta property="og:description" content="Product Manager and Technical Product Owner with 4+ years across SaaS, enterprise analytics, FinTech and AI-powered products. Currently owning Enterprise Reporting at Sonatype.">
+<meta property="og:url" content="https://narasimhavenu.github.io/Venu_Portfolio/">
+<meta property="og:image" content="https://narasimhavenu.github.io/Venu_Portfolio/preview.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Venu Karanam, Product Manager and Technical Product Owner">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Venu Karanam — Product Manager &amp; Technical Product Owner">
+<meta name="twitter:description" content="Product Manager and Technical Product Owner with 4+ years across SaaS, enterprise analytics, FinTech and AI-powered products. Currently owning Enterprise Reporting at Sonatype.">
+<meta name="twitter:image" content="https://narasimhavenu.github.io/Venu_Portfolio/preview.jpg">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Person","name":"Venu Karanam","jobTitle":"Technical Product Owner","url":"https://narasimhavenu.github.io/Venu_Portfolio/","sameAs":["https://www.linkedin.com/in/karanamvenu"],"worksFor":{"@type":"Organization","name":"Sonatype"},"alumniOf":{"@type":"CollegeOrUniversity","name":"SRM Institute of Science and Technology"},"knowsAbout":["Product management","Enterprise analytics","Generative AI","Agile delivery"]}
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,500&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -492,15 +513,60 @@
     .pj-card { transition: none; }
     .pj-card:hover, .pj-card:hover .xp-go { transform: none; }
   }
+
+  /* MOBILE MENU */
+  .nav-right { display: flex; align-items: center; gap: 10px; }
+  .nav-toggle {
+    display: none;
+    width: 44px; height: 44px; padding: 0;
+    align-items: center; justify-content: center;
+    background: var(--paper); color: inherit;
+    border: 1px solid var(--line); border-radius: 12px;
+    cursor: pointer;
+  }
+  .nav-toggle-bars, .nav-toggle-bars::before, .nav-toggle-bars::after {
+    display: block; width: 18px; height: 2px;
+    background: currentColor; border-radius: 2px;
+    transition: transform .2s ease, top .2s ease, background .2s ease;
+  }
+  .nav-toggle-bars { position: relative; }
+  .nav-toggle-bars::before, .nav-toggle-bars::after { content: ""; position: absolute; left: 0; }
+  .nav-toggle-bars::before { top: -6px; }
+  .nav-toggle-bars::after { top: 6px; }
+  nav.is-open .nav-toggle-bars { background: transparent; }
+  nav.is-open .nav-toggle-bars::before { top: 0; transform: rotate(45deg); }
+  nav.is-open .nav-toggle-bars::after { top: 0; transform: rotate(-45deg); }
+  .nav-extra { display: none; }
+  @media (max-width: 719.98px) {
+    .nav-toggle { display: inline-flex; }
+    .nav-resume { display: none !important; }
+    .nav-links {
+      display: none;
+      position: absolute; left: 0; right: 0; top: 100%;
+      flex-direction: column; gap: 0;
+      padding: 6px 28px 14px;
+      background: var(--cream);
+      border-bottom: 1px solid var(--line);
+      box-shadow: 0 18px 30px -22px rgba(27,35,64,0.45);
+    }
+    nav.is-open .nav-links { display: flex; }
+    .nav-links li + li { border-top: 1px dashed var(--line); }
+    .nav-links a { display: block; padding: 14px 0; font-size: 1.02rem; opacity: 1; }
+    .nav-extra { display: block; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .nav-toggle-bars, .nav-toggle-bars::before, .nav-toggle-bars::after { transition: none; }
+  }
+  .contact-box .contact-links .btn.is-email { font-size: 0.8rem; letter-spacing: 0; }
 </style>
 <script>document.documentElement.classList.add('js')</script>
 </head>
 <body>
 
-<nav>
+<nav id="siteNav">
   <div class="wrap nav-inner">
     <div class="logo">Venu Karanam</div>
-    <ul class="nav-links">
+    <ul class="nav-links" id="navLinks">
       <li><a href="#about">About</a></li>
       <li><a href="#work">Work</a></li>
       <!-- <li><a href="#thinking">Approach</a></li> -->
@@ -508,8 +574,12 @@
       <!-- <li><a href="#projects">Projects</a></li> -->
       <li><a href="#skills">Skills</a></li>
       <li><a href="#contact">Contact</a></li>
+      <li class="nav-extra"><a href="Venu_K_Resume.pdf" download>Download resume</a></li>
     </ul>
-    <a class="btn" style="padding:9px 18px; font-size:0.85rem;" href="Venu_K_Resume.pdf" download>Download resume</a>
+    <div class="nav-right">
+      <a class="btn nav-resume" style="padding:9px 18px; font-size:0.85rem;" href="Venu_K_Resume.pdf" download>Download resume</a>
+      <button type="button" class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false" aria-controls="navLinks"><span class="nav-toggle-bars" aria-hidden="true"></span></button>
+    </div>
   </div>
 </nav>
 
@@ -698,6 +768,7 @@ END (hidden) -->
         </header>
         <ul class="xp-points">
           <li>Own product strategy, roadmap, OKRs, prioritization and delivery for Enterprise Reporting across Sonatype Lifecycle, Firewall and Nexus Repo.</li>
+          <li>Drive the end-to-end product lifecycle, turning customer needs, business objectives and product analytics into roadmap initiatives, PRDs, requirements and measurable outcomes.</li>
           <li>Cut processing time 95% and data-processing costs 45% with Databricks liquid clustering.</li>
           <li>Led the UI and product redesign of Enterprise Reporting; identified 6 key architecture risks.</li>
           <li>Built an AI-powered dependency malware scanner and won the Hackers Choice Award at Sonatype Hackathon 2026.</li>
@@ -718,6 +789,7 @@ END (hidden) -->
           <li>Led end-to-end development of Generative AI solutions for internal and client-facing applications.</li>
           <li>Partnered with clients, Product, Engineering and QA from discovery through post-release feedback.</li>
           <li>Wrote PRDs, user stories and acceptance criteria aligned to business objectives.</li>
+          <li>Identified opportunities for AI-powered automation and intelligent workflows, and contributed to a Fusion-based support portal.</li>
         </ul>
       </article>
       <article class="xp-panel" data-role="3" data-title="Senior Product Analyst" aria-labelledby="xp-title-3">
@@ -734,6 +806,7 @@ END (hidden) -->
           <li>Designed and deployed a custom chatbot that cut support burden by 85%.</li>
           <li>Used product analytics and user feedback to recommend feature and usability improvements.</li>
           <li>Worked with Engineering and QA on requirements, UAT and release validation in an Agile/DevOps environment.</li>
+          <li>Collaborated with clients to gather requirements and maintain product documentation.</li>
         </ul>
       </article>
       <article class="xp-panel" data-role="4" data-title="Engineer Trainee" aria-labelledby="xp-title-4">
@@ -876,7 +949,7 @@ END (hidden) -->
     </div>
     <div class="skills-grid">
       <div class="skill-group"><h3>Product Management</h3><div class="pill-row">
-        <span class="pill">Product Strategy</span><span class="pill">Roadmap</span><span class="pill">Product Discovery</span><span class="pill">Customer Discovery</span><span class="pill">Prioritization</span><span class="pill">Backlog Management</span><span class="pill">OKRs</span><span class="pill">Product Metrics</span></div></div>
+        <span class="pill">Product Strategy</span><span class="pill">Roadmap</span><span class="pill">Product Discovery</span><span class="pill">Customer Discovery</span><span class="pill">Product Design</span><span class="pill">Wireframing &amp; Prototyping</span><span class="pill">Prioritization</span><span class="pill">Backlog Management</span><span class="pill">OKRs</span><span class="pill">Product Metrics</span></div></div>
       <div class="skill-group"><h3>Delivery</h3><div class="pill-row">
         <span class="pill">PRDs</span><span class="pill">User Stories</span><span class="pill">Requirements Management</span><span class="pill">Agile/Scrum</span><span class="pill">UAT</span><span class="pill">Release Management</span><span class="pill">Stakeholder Management</span></div></div>
       <div class="skill-group"><h3>Technical Product</h3><div class="pill-row">
@@ -915,7 +988,7 @@ END (hidden) -->
       <p>Open to exciting opportunities and conversations about building products that make an impact. Always happy to connect.</p>
       <div class="contact-links">
         <a class="btn btn-primary" href="mailto:karanamvenu4@gmail.com">Email me</a>
-        <a class="btn" href="tel:+916303117119">Contact</a>
+        <button type="button" class="btn" id="copyEmail" data-email="karanamvenu4@gmail.com" aria-live="polite">Copy email</button>
         <a class="btn" href="https://www.linkedin.com/in/karanamvenu" target="_blank" rel="noopener">LinkedIn</a>
         <a class="btn" href="Venu_K_Resume.pdf" download>Download resume</a>
       </div>
@@ -1059,6 +1132,58 @@ END (hidden) -->
     var i = o.indexFromHash(location.hash);
     if (i >= 0) { o.render(i, false); setTimeout(o.scrollToStage, 60); }
   });
+})();
+</script>
+<script>
+/* Mobile menu + copy-email button */
+(function () {
+  var nav = document.getElementById('siteNav'), toggle = document.getElementById('navToggle');
+  if (nav && toggle) {
+    var setOpen = function (open) {
+      nav.classList.toggle('is-open', open);
+      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    };
+    toggle.addEventListener('click', function () { setOpen(!nav.classList.contains('is-open')); });
+    nav.addEventListener('click', function (e) {
+      if (e.target.closest && e.target.closest('.nav-links a')) setOpen(false);
+    });
+    document.addEventListener('click', function (e) {
+      if (nav.classList.contains('is-open') && !nav.contains(e.target)) setOpen(false);
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && nav.classList.contains('is-open')) { setOpen(false); toggle.focus(); }
+    });
+    window.addEventListener('resize', function () { if (window.innerWidth >= 720) setOpen(false); });
+  }
+
+  var copy = document.getElementById('copyEmail');
+  if (copy) {
+    var label = copy.textContent, timer = null;
+    var show = function (text, isEmail) {
+      copy.textContent = text;
+      copy.classList.toggle('is-email', !!isEmail);
+      clearTimeout(timer);
+      timer = setTimeout(function () { copy.textContent = label; copy.classList.remove('is-email'); }, isEmail ? 6000 : 2200);
+    };
+    var legacyCopy = function (text) {
+      var ta = document.createElement('textarea'), ok = false;
+      ta.value = text; ta.setAttribute('readonly', '');
+      ta.style.cssText = 'position:fixed;top:0;left:0;opacity:0';
+      document.body.appendChild(ta); ta.select();
+      try { ok = document.execCommand('copy'); } catch (err) {}
+      document.body.removeChild(ta);
+      return ok;
+    };
+    copy.addEventListener('click', function () {
+      var email = copy.getAttribute('data-email');
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(email).then(function () { show('Copied \u2713'); }, function () {
+          if (legacyCopy(email)) show('Copied \u2713'); else show(email, true);
+        });
+      } else if (legacyCopy(email)) { show('Copied \u2713'); } else { show(email, true); }
+    });
+  }
 })();
 </script>
 </body>
